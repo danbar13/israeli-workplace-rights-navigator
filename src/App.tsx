@@ -228,7 +228,7 @@ export function App() {
       <Footer onOpenDisclaimer={() => setIsDisclaimerOpen(true)} />
 
       {/* Full Israeli Standard Accessibility Widget */}
-      <AccessibilityMenu />
+      <AccessibilityMenu isDark={isDark} onToggleDarkMode={toggleDarkMode} />
 
       {/* First-Load & On-Demand Legal Disclaimer Modal */}
       <DisclaimerModal

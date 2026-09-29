@@ -6,6 +6,7 @@ import {
   ZoomOut, 
   RotateCcw, 
   Sun, 
+  Moon,
   Eye, 
   Type, 
   Link2, 
@@ -43,7 +44,15 @@ const defaultSettings: AccessibilitySettings = {
   bigCursor: false
 };
 
-export const AccessibilityMenu: React.FC = () => {
+interface AccessibilityMenuProps {
+  isDark?: boolean;
+  onToggleDarkMode?: () => void;
+}
+
+export const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({
+  isDark = false,
+  onToggleDarkMode
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isStatementOpen, setIsStatementOpen] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>(() => {
@@ -208,6 +217,37 @@ export const AccessibilityMenu: React.FC = () => {
 
               {/* Toggles Grid */}
               <div className="grid grid-cols-2 gap-2.5">
+                {/* Theme Mode Toggle (Day / Night) */}
+                {onToggleDarkMode && (
+                  <button
+                    onClick={onToggleDarkMode}
+                    className={`p-3 rounded-2xl border text-right transition flex flex-col justify-between h-24 col-span-2 ${
+                      isDark
+                        ? 'bg-amber-500/10 border-amber-500/50 text-amber-200'
+                        : 'bg-brand-50 border-brand-200 text-brand-900'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      {isDark ? (
+                        <Sun className="w-5 h-5 text-amber-400" />
+                      ) : (
+                        <Moon className="w-5 h-5 text-slate-700" />
+                      )}
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-slate-800 shadow-xs border border-slate-200 dark:border-slate-700">
+                        {isDark ? 'מצב לילה פעיל' : 'מצב יום פעיל'}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-xs block">
+                        {isDark ? 'מעבר לתצוגת יום (מצב בהיר)' : 'מעבר לתצוגת לילה (דארק מוד)'}
+                      </span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400">
+                        {isDark ? 'לחץ למעבר לרקע בהיר וניגודיות סטנדרטית' : 'לחץ להחשכת הממשק להקלה על העיניים'}
+                      </span>
+                    </div>
+                  </button>
+                )}
+
                 <button
                   onClick={() => toggleSetting('highContrast')}
                   className={`p-3 rounded-2xl border text-right transition flex flex-col justify-between h-24 ${

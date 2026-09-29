@@ -121,11 +121,21 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Dark Mode Toggle Button */}
             <button
               onClick={toggleDarkMode}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+              className="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-2 cursor-pointer shadow-2xs font-bold text-xs"
               aria-label={isDark ? 'מעבר לתצוגת יום' : 'מעבר לתצוגת לילה (דארק מוד)'}
-              title={isDark ? 'מעבר למצב יום' : 'מעבר למצב לילה (Dark Mode)'}
+              title={isDark ? 'מעבר למצב יום (תצוגה בהירה)' : 'מעבר למצב לילה (דארק מוד)'}
             >
-              {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+              {isDark ? (
+                <>
+                  <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" />
+                  <span className="text-amber-300 hidden md:inline">מצב יום</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-slate-700" />
+                  <span className="text-slate-700 hidden md:inline">דארק מוד</span>
+                </>
+              )}
             </button>
 
             {/* Legal Disclaimer Modal Button */}
