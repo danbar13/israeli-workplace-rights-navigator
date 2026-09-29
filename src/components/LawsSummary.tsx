@@ -1,21 +1,122 @@
 import React from 'react';
-import { Scale, BookOpen, ExternalLink, ShieldCheck, Building2, Clock, AlertCircle } from 'lucide-react';
+import { 
+  Scale, 
+  BookOpen, 
+  ExternalLink, 
+  Building2, 
+  Clock, 
+  FileText
+} from 'lucide-react';
 import { OFFICIAL_EXTERNAL_LINKS } from '../data/laborRightsData';
 
+interface CoreLawItem {
+  name: string;
+  hebrewYear: string;
+  main: string;
+  lawUrl: string; // Link to authoritative consolidated statute (Nevo)
+  kolZchutUrl: string; // Link to Kol Zchut portal
+}
+
 export const LawsSummary: React.FC = () => {
-  const coreLaws = [
-    { name: 'חוק חופשה שנתית', year: 1951, main: 'ימי חופשה בתשלום לפי ותק, פדיון חופשה בסיום עבודה, והעברת ימים בחירום ומילואים (2026).' },
-    { name: 'חוק דמי מחלה', year: 1976, main: '1.5 ימים לחודש עד 90 יום; תשלום מדורג (0% יום 1, 50% ימים 2-3, 100% יום 4+); מחלת ילד ותעודה קצרה.' },
-    { name: 'חוק שעות עבודה ומנוחה', year: 1951, main: 'שבוע 42 שעות, 8 שעות ליום, שעות נוספות (125%/150%), והצטברות גמולי שבת עד 200%.' },
-    { name: 'חוק פיצויי פיטורים', year: 1963, main: 'חודש לשנה לאחר שנת עבודה, הסדר סעיף 14 (6% מול 8.33%), מועד תשלום תוך 15 יום והלנה.' },
-    { name: 'חוק עבודת נשים', year: 1954, main: '26 שבועות לידה והורות (15 בתשלום), איסור פיטורים בהריון מוותק 6 חודשים, הגנה לאחר לידה והפלה.' },
-    { name: 'חוק שכר מינימום', year: 1987, main: '6,443.85 ₪ לחודש ו-35.40 ₪ לשעה למבוגר (נכון ל-1.4.2026), ותעריפי נוער מדורגים לפי גיל (מחלק 173).' },
-    { name: 'חוק הודעה מוקדמת לפיטורים ולהתפטרות', year: 2001, main: 'חובת מתן הודעה מוקדמת מדורגת לעובד חודשי ושעתי, וחלף הודעה מוקדמת.' },
-    { name: 'חוק הגנת השכר', year: 1958, main: 'חובת מסירת תלוש שכר מפורט עד היום ה-9 (סעיף 24), איסור ניכויים שלא כדין, ופיצויי הלנת שכר.' },
-    { name: 'חוק למניעת הטרדה מינית', year: 1998, main: 'חובות מעסיק, מינוי ממונה, איסור התנכלות, ואחריות מזמיני שירות כלפי עובדי קבלן.' },
-    { name: 'חוק שוויון זכויות לאנשים עם מוגבלויות', year: 1998, main: 'חובת ביצוע התאמות סבירות, איסור הפליה ונגישות מקום העבודה.' },
-    { name: 'צו הרחבה לפנסיה חובה', year: 2008, main: 'הפרשות חובה: 6% עובד, 6.5% מעסיק תגמולים, 6% פיצויים מינימום, וזיכוי מס 35% בסעיף 45א.' },
-    { name: 'צו הרחבה דמי הבראה', year: 2026, main: '5-10 ימים לפי ותק; תעריף מעודכן 451.50 ₪ בפרטי (השלמת 33.50 ₪ לשנה זו) ו-511.60 ₪ בציבורי.' }
+  const coreLaws: CoreLawItem[] = [
+    { 
+      name: 'חוק חופשה שנתית', 
+      hebrewYear: 'תשי"א-1951', 
+      main: 'ימי חופשה בתשלום לפי ותק, פדיון חופשה בסיום עבודה, והעברת ימים בחירום ומילואים (2026).',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_001.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/חופשה_שנתית'
+    },
+    { 
+      name: 'חוק דמי מחלה', 
+      hebrewYear: 'תשל"ו-1976', 
+      main: '1.5 ימים לחודש עד 90 יום; תשלום מדורג (0% יום 1, 50% ימים 2-3, 100% יום 4+); מחלת ילד ותעודה קצרה.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_004.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/דמי_מחלה'
+    },
+    { 
+      name: 'חוק שעות עבודה ומנוחה', 
+      hebrewYear: 'תשי"א-1951', 
+      main: 'שבוע 42 שעות, 8 שעות ליום, שעות נוספות (125%/150%), והצטברות גמולי שבת עד 200%.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_002.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/גמול_עבור_העסקה_במנוחה_השבועית'
+    },
+    { 
+      name: 'חוק פיצויי פיטורים', 
+      hebrewYear: 'תשכ"ג-1963', 
+      main: 'חודש לשנה לאחר שנת עבודה, הסדר סעיף 14 (6% מול 8.33%), מועד תשלום תוך 15 יום והלנה.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_001.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/פיצויי_פיטורים'
+    },
+    { 
+      name: 'חוק עבודת נשים', 
+      hebrewYear: 'תשי"ד-1954', 
+      main: '26 שבועות לידה והורות (15 בתשלום), איסור פיטורים בהריון מוותק 6 חודשים, הגנה לאחר לידה והפלה.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_006.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/נשים_בהריון_ולאחר_לידה'
+    },
+    { 
+      name: 'חוק עבודת הנוער', 
+      hebrewYear: 'תשי"ג-1953', 
+      main: 'שבוע 40 שעות, איסור מוחלט על שעות נוספות ושבת, איסור עבודת לילה, שכר לפי גיל (מחלק 173), והתלמדות בתשלום מלא.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_003.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זכויות_בני_נוער_עובדים'
+    },
+    { 
+      name: 'חוק שכר מינימום', 
+      hebrewYear: 'תשמ"ז-1987', 
+      main: '6,443.85 ₪ לחודש ו-35.40 ₪ לשעה למבוגר (נכון ל-1.4.2026), ותעריפי נוער מדורגים לפי גיל (מחלק 173).',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/184_011.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/שכר_מינימום'
+    },
+    { 
+      name: 'חוק הודעה מוקדמת לפיטורים ולהתפטרות', 
+      hebrewYear: 'תשס"א-2001', 
+      main: 'חובת מתן הודעה מוקדמת מדורגת לעובד חודשי ושעתי, וחלף הודעה מוקדמת.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/189_010.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/הודעה_מוקדמת_לפיטורים'
+    },
+    { 
+      name: 'חוק הגנת השכר', 
+      hebrewYear: 'תשי"ח-1958', 
+      main: 'חובת מסירת תלוש שכר מפורט עד היום ה-9 (סעיף 24), איסור ניכויים שלא כדין, ופיצויי הלנת שכר.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/184_003.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/מועד_תשלום_שכר_עבודה'
+    },
+    { 
+      name: 'חוק למניעת הטרדה מינית', 
+      hebrewYear: 'תשנ"ח-1998', 
+      main: 'חובות מעסיק, מינוי ממונה, איסור התנכלות, ואחריות מזמיני שירות כלפי עובדי קבלן.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214_050.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/מניעת_הטרדה_מינית_בעבודה'
+    },
+    { 
+      name: 'חוק שוויון זכויות לאנשים עם מוגבלות', 
+      hebrewYear: 'תשנ"ח-1998', 
+      main: 'חובת ביצוע התאמות סבירות, איסור הפליה ונגישות מקום העבודה.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214_045.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/איסור_אפליה_של_אדם_עם_מוגבלות_בעבודה'
+    },
+    { 
+      name: 'חוק בית הדין לעבודה', 
+      hebrewYear: 'תשכ"ט-1969', 
+      main: 'סמכות שיפוט ייחודית לסכסוכי עבודה, שלילת סמכות מתביעות קטנות, וערעורים בארצי.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_002.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/בתי_הדין_האזוריים_לעבודה'
+    },
+    { 
+      name: 'צו הרחבה לפנסיה חובה', 
+      hebrewYear: 'תשס"ח-2008', 
+      main: 'הפרשות חובה: 6% עובד, 6.5% מעסיק תגמולים, 6% פיצויים מינימום, וזיכוי מס 35% בסעיף 45א.',
+      lawUrl: 'https://www.nevo.co.il/law_html/law05/5772.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_לביטוח_פנסיוני_מקיף_במשק'
+    },
+    { 
+      name: 'צו הרחבה דמי הבראה', 
+      hebrewYear: 'מעודכן 2026', 
+      main: '5-10 ימים לפי ותק; תעריף מעודכן 451.50 ₪ בפרטי (השלמת 33.50 ₪ לשנה זו) ו-511.60 ₪ בציבורי.',
+      lawUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_בדבר_השתתפות_המעסיק_בהוצאות_הבראה_ונופש',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/דמי_הבראה'
+    }
   ];
 
   const limitations = [
@@ -33,7 +134,7 @@ export const LawsSummary: React.FC = () => {
           <span>ריכוז חקיקת העבודה, ערכאות שיפוט ומועדי התיישנות</span>
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm max-w-2xl mx-auto">
-          כל דיני העבודה בישראל קובעים רצפת זכויות מינימלית (קוגנטית) שאין להתנות עליה בחוזה אלא לטובת העובד.
+          כל דיני העבודה בישראל קובעים רצפת זכויות מינימלית (קוגנטית) שאין להתנות עליה בחוזה אלא לטובת העובד. לחצו על כל חוק לצפייה בנוסח החוק המלא והמעודכן.
         </p>
       </div>
 
@@ -86,21 +187,75 @@ export const LawsSummary: React.FC = () => {
         </div>
       </div>
 
-      {/* Core Statutes Grid */}
+      {/* Core Statutes Interactive Grid */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-brand-600 dark:text-brand-400" />
-          <span>סקירת חוקי היסוד וצווי ההרחבה</span>
-        </h3>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-brand-600 dark:text-brand-400" />
+              <span>סקירת חוקי היסוד וצווי ההרחבה (נוסח חוק מלא)</span>
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              לחצו על הכפתורים בכל כרטיס למעבר ישיר לנוסח החוק המלא באתר נבו (מאגר החקיקה הישראלי) או להסבר מפורט באתר כל זכות.
+            </p>
+          </div>
+          <span className="text-xs font-mono px-3 py-1 bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 rounded-full border border-brand-200 dark:border-brand-800 self-start sm:self-auto font-bold">
+            {coreLaws.length} חוקים וצווים
+          </span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {coreLaws.map((law, idx) => (
-            <div key={idx} className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 space-y-2 shadow-2xs">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-slate-900 dark:text-white text-sm">{law.name}</span>
-                <span className="text-xs text-slate-400 font-mono">תשי"א-{law.year}</span>
+            <div 
+              key={idx} 
+              className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-brand-400 dark:hover:border-brand-500/80 transition-all duration-200 shadow-2xs hover:shadow-md flex flex-col justify-between group space-y-4"
+            >
+              <div className="space-y-2">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 bg-brand-50 dark:bg-brand-950/60 rounded-xl text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform">
+                      <FileText className="w-4 h-4" />
+                    </div>
+                    <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      {law.name}
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-slate-600 dark:text-slate-300 font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-200/80 dark:border-slate-700 whitespace-nowrap">
+                    {law.hebrewYear}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pr-1">
+                  {law.main}
+                </p>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{law.main}</p>
+
+              {/* Action Buttons: Full Law on Nevo + Guide on Kol Zchut */}
+              <div className="flex items-center gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <a
+                  href={law.lawUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-2xs group/btn cursor-pointer"
+                  title={`פתח את נוסח החוק המלא של ${law.name} באתר נבו`}
+                  aria-label={`נוסח החוק המלא של ${law.name} באתר נבו`}
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>נוסח מלא (נבו)</span>
+                  <ExternalLink className="w-3 h-3 opacity-80 group-hover/btn:translate-x-[-2px] transition-transform" />
+                </a>
+
+                <a
+                  href={law.kolZchutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 transition border border-slate-200 dark:border-slate-700 cursor-pointer"
+                  title={`מדריך והסברים על ${law.name} באתר כל זכות`}
+                  aria-label={`מדריך ${law.name} באתר כל זכות`}
+                >
+                  <span>כל זכות</span>
+                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
