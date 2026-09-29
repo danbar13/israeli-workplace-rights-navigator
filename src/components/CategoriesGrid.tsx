@@ -11,6 +11,7 @@ import {
   Car, 
   ShieldCheck, 
   Scale,
+  GraduationCap,
   ChevronLeft,
   Sparkles,
   ExternalLink,
@@ -38,6 +39,7 @@ export const CategoriesGrid: React.FC = () => {
       case 'Car': return <Car {...props} />;
       case 'ShieldCheck': return <ShieldCheck {...props} />;
       case 'Scale': return <Scale {...props} />;
+      case 'GraduationCap': return <GraduationCap {...props} />;
       default: return <BookOpen {...props} />;
     }
   };

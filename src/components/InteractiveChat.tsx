@@ -154,49 +154,26 @@ export const InteractiveChat: React.FC = () => {
               {msg.sender === 'user' ? (
                 <p className="whitespace-pre-wrap">{msg.text}</p>
               ) : (
-                <div className="space-y-4">
-                  {/* Summary / Lead */}
-                  <div className="font-bold text-slate-900 dark:text-white text-base leading-relaxed">
+                <div className="space-y-3.5">
+                  {/* Direct Answer / Summary */}
+                  <div className="text-slate-900 dark:text-white text-sm sm:text-base font-semibold leading-relaxed">
                     {msg.text}
                   </div>
 
                   {msg.answerData && (
-                    <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-slate-700">
-                      {/* Legal Basis */}
-                      {msg.answerData.legalBasis && (
-                        <div className="p-3 bg-brand-50/80 dark:bg-brand-950/40 rounded-xl border border-brand-100 dark:border-brand-900/60 flex items-start gap-2.5">
-                          <Scale className="w-4 h-4 text-brand-700 dark:text-brand-400 flex-shrink-0 mt-0.5" />
-                          <div className="text-xs text-brand-950 dark:text-brand-200">
-                            <strong>מקור החוק: </strong>
-                            <span>{msg.answerData.legalBasis}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Fallback Notice if query not in database */}
-                      {msg.answerData.isFallback && (
-                        <div className="p-3.5 bg-amber-50 dark:bg-amber-950/40 rounded-2xl border border-amber-200 dark:border-amber-800 text-amber-950 dark:text-amber-200 text-xs flex items-start gap-2.5">
-                          <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                          <div>
-                            <strong>הודעת מערכת: </strong>
-                            <span>
-                              כדי לשמור על דיוק משפטי, מידע שאינו מוגדר מראש במאגר מופנה ישירות לאתר "כל זכות" על מנת שלא להציג מידע שגוי.
-                            </span>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Rules and Calculations */}
+                    <div className="space-y-3 pt-3 border-t border-slate-200/80 dark:border-slate-700/80">
+                      
+                      {/* Key Points / Rules */}
                       {msg.answerData.rulesAndCalculation.length > 0 && (
-                        <div className="space-y-2">
-                          <h4 className="font-bold text-xs text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                            <span>הוראות החוק וכללי החישוב:</span>
+                        <div className="space-y-1.5 bg-white/70 dark:bg-slate-900/60 p-3.5 rounded-2xl border border-slate-200/60 dark:border-slate-800">
+                          <h4 className="font-bold text-xs text-brand-800 dark:text-brand-300 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                            <span>עיקרי הדברים והוראות החוק:</span>
                           </h4>
-                          <ul className="space-y-1.5 pr-2">
+                          <ul className="space-y-1.5 pr-1">
                             {msg.answerData.rulesAndCalculation.map((rule, idx) => (
                               <li key={idx} className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed flex items-start gap-2">
-                                <span className="text-brand-500 font-bold">•</span>
+                                <span className="text-brand-500 font-bold select-none">•</span>
                                 <span>{rule}</span>
                               </li>
                             ))}
@@ -204,17 +181,17 @@ export const InteractiveChat: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Pitfalls and Warnings */}
-                      {msg.answerData.pitfallsAndWarnings.length > 0 && (
-                        <div className="p-3.5 bg-red-50/90 dark:bg-red-950/40 rounded-2xl border border-red-200 dark:border-red-900/60 space-y-2 text-xs text-red-950 dark:text-red-200">
-                          <div className="font-bold flex items-center gap-1.5 text-red-800 dark:text-red-300">
-                            <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
-                            <span>מלכודות ואזהרות מיוחדות:</span>
+                      {/* Warnings / Pitfalls (if any) */}
+                      {msg.answerData.pitfallsAndWarnings && msg.answerData.pitfallsAndWarnings.length > 0 && (
+                        <div className="p-3 bg-amber-500/10 dark:bg-amber-500/15 rounded-2xl border border-amber-300/40 dark:border-amber-500/30 text-xs text-amber-950 dark:text-amber-200 space-y-1">
+                          <div className="font-bold flex items-center gap-1.5 text-amber-900 dark:text-amber-300">
+                            <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                            <span>שים לב:</span>
                           </div>
-                          <ul className="space-y-1 pr-2">
+                          <ul className="space-y-1 pr-1">
                             {msg.answerData.pitfallsAndWarnings.map((pit, idx) => (
-                              <li key={idx} className="flex items-start gap-1.5">
-                                <span className="text-red-500 font-bold">•</span>
+                              <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
+                                <span className="text-amber-600 dark:text-amber-400 font-bold">•</span>
                                 <span>{pit}</span>
                               </li>
                             ))}
@@ -222,38 +199,30 @@ export const InteractiveChat: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Recommended Steps */}
-                      {msg.answerData.recommendedSteps.length > 0 && (
-                        <div className="space-y-2">
-                          <h4 className="font-bold text-xs text-slate-900 dark:text-white flex items-center gap-1.5">
-                            <HelpCircle className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-                            <span>צעדים מומלצים לפעולה:</span>
-                          </h4>
-                          <ol className="list-decimal list-inside space-y-1 text-xs text-slate-700 dark:text-slate-300 pr-1">
-                            {msg.answerData.recommendedSteps.map((step, idx) => (
-                              <li key={idx} className="leading-relaxed">{step}</li>
-                            ))}
-                          </ol>
-                        </div>
-                      )}
-
-                      {/* Kol Zchut official link */}
+                      {/* Direct Link to Official Kol Zchut Article */}
                       {msg.answerData.kolZchutUrl && (
-                        <div className="pt-2">
+                        <div className="pt-1">
                           <a
                             href={msg.answerData.kolZchutUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-brand-50 dark:bg-brand-950/80 hover:bg-brand-100 dark:hover:bg-brand-900/80 text-brand-700 dark:text-brand-300 font-bold rounded-xl border border-brand-200 dark:border-brand-800 text-xs transition shadow-2xs"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition shadow-xs group"
                           >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>קראו עוד והרחיבו באתר "כל זכות" (Kol Zchut)</span>
+                            <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-[-2px]" />
+                            <span>{msg.answerData.kolZchutTitle || 'מעבר למדריך המלא באתר "כל זכות"'}</span>
                           </a>
                         </div>
                       )}
 
-                      <div className="text-[11px] text-slate-400 dark:text-slate-500 pt-1">
-                        {msg.answerData.sourceNote}
+                      {/* Clean footer line with legal reference */}
+                      <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1 gap-2 border-t border-slate-100 dark:border-slate-800">
+                        {msg.answerData.legalBasis && (
+                          <span className="flex items-center gap-1">
+                            <Scale className="w-3.5 h-3.5 text-slate-400" />
+                            <span>{msg.answerData.legalBasis}</span>
+                          </span>
+                        )}
+                        <span>{msg.answerData.sourceNote}</span>
                       </div>
                     </div>
                   )}
