@@ -23,91 +23,91 @@ export const LawsSummary: React.FC = () => {
       name: 'חוק חופשה שנתית', 
       hebrewYear: 'תשי"א-1951', 
       main: 'ימי חופשה בתשלום לפי ותק, פדיון חופשה בסיום עבודה, והעברת ימים בחירום ומילואים (2026).',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_001.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/71906.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/חופשה_שנתית'
     },
     { 
       name: 'חוק דמי מחלה', 
       hebrewYear: 'תשל"ו-1976', 
       main: '1.5 ימים לחודש עד 90 יום; תשלום מדורג (0% יום 1, 50% ימים 2-3, 100% יום 4+); מחלת ילד ותעודה קצרה.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_004.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/71572.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/דמי_מחלה'
     },
     { 
       name: 'חוק שעות עבודה ומנוחה', 
       hebrewYear: 'תשי"א-1951', 
       main: 'שבוע 42 שעות, 8 שעות ליום, שעות נוספות (125%/150%), והצטברות גמולי שבת עד 200%.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_002.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/5174.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/גמול_עבור_העסקה_במנוחה_השבועית'
     },
     { 
       name: 'חוק פיצויי פיטורים', 
       hebrewYear: 'תשכ"ג-1963', 
       main: 'חודש לשנה לאחר שנת עבודה, הסדר סעיף 14 (6% מול 8.33%), מועד תשלום תוך 15 יום והלנה.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_001.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/4566.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/פיצויי_פיטורים'
     },
     { 
       name: 'חוק עבודת נשים', 
       hebrewYear: 'תשי"ד-1954', 
       main: '26 שבועות לידה והורות (15 בתשלום), איסור פיטורים בהריון מוותק 6 חודשים, הגנה לאחר לידה והפלה.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p184_006.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/74249.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/נשים_בהריון_ולאחר_לידה'
     },
     { 
       name: 'חוק עבודת הנוער', 
       hebrewYear: 'תשי"ג-1953', 
       main: 'שבוע 40 שעות, איסור מוחלט על שעות נוספות ושבת, איסור עבודת לילה, שכר לפי גיל (מחלק 173), והתלמדות בתשלום מלא.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_003.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/4273.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/זכויות_בני_נוער_עובדים'
     },
     { 
       name: 'חוק שכר מינימום', 
       hebrewYear: 'תשמ"ז-1987', 
       main: '6,443.85 ₪ לחודש ו-35.40 ₪ לשעה למבוגר (נכון ל-1.4.2026), ותעריפי נוער מדורגים לפי גיל (מחלק 173).',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/184_011.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/98675.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/שכר_מינימום'
     },
     { 
       name: 'חוק הודעה מוקדמת לפיטורים ולהתפטרות', 
       hebrewYear: 'תשס"א-2001', 
       main: 'חובת מתן הודעה מוקדמת מדורגת לעובד חודשי ושעתי, וחלף הודעה מוקדמת.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/189_010.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/71704.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/הודעה_מוקדמת_לפיטורים'
     },
     { 
       name: 'חוק הגנת השכר', 
       hebrewYear: 'תשי"ח-1958', 
       main: 'חובת מסירת תלוש שכר מפורט עד היום ה-9 (סעיף 24), איסור ניכויים שלא כדין, ופיצויי הלנת שכר.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/184_003.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/71689.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/מועד_תשלום_שכר_עבודה'
     },
     { 
       name: 'חוק למניעת הטרדה מינית', 
       hebrewYear: 'תשנ"ח-1998', 
       main: 'חובות מעסיק, מינוי ממונה, איסור התנכלות, ואחריות מזמיני שירות כלפי עובדי קבלן.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214_050.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/72507.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/מניעת_הטרדה_מינית_בעבודה'
     },
     { 
       name: 'חוק שוויון זכויות לאנשים עם מוגבלות', 
       hebrewYear: 'תשנ"ח-1998', 
       main: 'חובת ביצוע התאמות סבירות, איסור הפליה ונגישות מקום העבודה.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214_045.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214m2_001.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/איסור_אפליה_של_אדם_עם_מוגבלות_בעבודה'
     },
     { 
       name: 'חוק בית הדין לעבודה', 
       hebrewYear: 'תשכ"ט-1969', 
       main: 'סמכות שיפוט ייחודית לסכסוכי עבודה, שלילת סמכות מתביעות קטנות, וערעורים בארצי.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law01/p189_002.htm',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/74611.htm',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/בתי_הדין_האזוריים_לעבודה'
     },
     { 
       name: 'צו הרחבה לפנסיה חובה', 
       hebrewYear: 'תשס"ח-2008', 
       main: 'הפרשות חובה: 6% עובד, 6.5% מעסיק תגמולים, 6% פיצויים מינימום, וזיכוי מס 35% בסעיף 45א.',
-      lawUrl: 'https://www.nevo.co.il/law_html/law05/5772.htm',
+      lawUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_לביטוח_פנסיוני_מקיף_במשק',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_לביטוח_פנסיוני_מקיף_במשק'
     },
     { 
