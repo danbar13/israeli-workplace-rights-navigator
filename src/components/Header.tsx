@@ -1,0 +1,210 @@
+import React from 'react';
+import { 
+  Scale, 
+  HelpCircle, 
+  Calculator, 
+  Search, 
+  LayoutGrid, 
+  BookOpen, 
+  ExternalLink,
+  ShieldAlert,
+  Moon,
+  Sun
+} from 'lucide-react';
+
+interface HeaderProps {
+  activeTab: 'categories' | 'chat' | 'calculators' | 'search' | 'laws';
+  setActiveTab: (tab: 'categories' | 'chat' | 'calculators' | 'search' | 'laws') => void;
+  onOpenDisclaimer: () => void;
+  isDark: boolean;
+  toggleDarkMode: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  activeTab,
+  setActiveTab,
+  onOpenDisclaimer,
+  isDark,
+  toggleDarkMode
+}) => {
+  return (
+    <header className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 sticky top-0 z-30 transition-colors duration-200 shadow-xs" dir="rtl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          
+          {/* Logo & Brand */}
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setActiveTab('categories')}>
+            <div className="w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-tr from-brand-700 via-brand-600 to-sky-500 rounded-2xl flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-200">
+              <Scale className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white leading-tight">
+                  זכויות העובד בישראל
+                </h1>
+                <span className="hidden sm:inline-block px-2.5 py-0.5 bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 text-[10px] font-extrabold rounded-full border border-brand-200 dark:border-brand-800">
+                  מעודכן 2026
+                </span>
+              </div>
+              <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 block font-medium">
+                Israeli Workplace Rights Navigator
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation Links (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100/80 dark:bg-slate-800/80 p-1.5 rounded-2xl border border-slate-200/60 dark:border-slate-700/60">
+            <button
+              onClick={() => setActiveTab('categories')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
+                activeTab === 'categories'
+                  ? 'bg-white dark:bg-slate-700 text-brand-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <LayoutGrid className="w-4 h-4 text-brand-500" />
+              <span>מאגר הזכויות</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('chat')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
+                activeTab === 'chat'
+                  ? 'bg-white dark:bg-slate-700 text-brand-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <HelpCircle className="w-4 h-4 text-indigo-500" />
+              <span>יועץ תרחישים</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('calculators')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
+                activeTab === 'calculators'
+                  ? 'bg-white dark:bg-slate-700 text-brand-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <Calculator className="w-4 h-4 text-emerald-500" />
+              <span>מחשבונים</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('search')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
+                activeTab === 'search'
+                  ? 'bg-white dark:bg-slate-700 text-brand-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <Search className="w-4 h-4 text-amber-500" />
+              <span>חיפוש</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('laws')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
+                activeTab === 'laws'
+                  ? 'bg-white dark:bg-slate-700 text-brand-700 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <BookOpen className="w-4 h-4 text-rose-500" />
+              <span>חוקים וערכאות</span>
+            </button>
+          </nav>
+
+          {/* Right Action buttons */}
+          <div className="flex items-center gap-2">
+            
+            {/* Dark Mode Toggle Button */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+              aria-label={isDark ? 'מעבר לתצוגת יום' : 'מעבר לתצוגת לילה (דארק מוד)'}
+              title={isDark ? 'מעבר למצב יום' : 'מעבר למצב לילה (Dark Mode)'}
+            >
+              {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            </button>
+
+            {/* Legal Disclaimer Modal Button */}
+            <button
+              onClick={onOpenDisclaimer}
+              className="text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 border border-amber-200 dark:border-amber-800/60 px-3 py-2 rounded-xl flex items-center gap-1.5 transition"
+              title="קרא את ההבהרה המשפטית"
+            >
+              <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span className="hidden sm:inline">הבהרה משפטית</span>
+            </button>
+
+            {/* Kol Zchut Link */}
+            <a
+              href="https://www.kolzchut.org.il/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-brand-50 dark:hover:bg-slate-700 hover:text-brand-700 px-3 py-2 rounded-xl transition border border-slate-200 dark:border-slate-700"
+            >
+              <span>כל זכות</span>
+              <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile secondary tab bar */}
+        <div className="flex lg:hidden overflow-x-auto py-2.5 border-t border-slate-100 dark:border-slate-800 gap-1.5 scrollbar-none">
+          <button
+            onClick={() => setActiveTab('categories')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+              activeTab === 'categories' 
+                ? 'bg-brand-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
+            }`}
+          >
+            מאגר זכויות
+          </button>
+          <button
+            onClick={() => setActiveTab('chat')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+              activeTab === 'chat' 
+                ? 'bg-brand-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
+            }`}
+          >
+            יועץ שאלות
+          </button>
+          <button
+            onClick={() => setActiveTab('calculators')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+              activeTab === 'calculators' 
+                ? 'bg-brand-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
+            }`}
+          >
+            מחשבונים
+          </button>
+          <button
+            onClick={() => setActiveTab('search')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+              activeTab === 'search' 
+                ? 'bg-brand-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
+            }`}
+          >
+            חיפוש
+          </button>
+          <button
+            onClick={() => setActiveTab('laws')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+              activeTab === 'laws' 
+                ? 'bg-brand-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800'
+            }`}
+          >
+            חוקים וערכאות
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+};

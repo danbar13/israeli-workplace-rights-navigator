@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  direction: rtl;
+  text-align: right;
+  transition: font-size 0.2s ease;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 transition-colors duration-200;
+  overflow-x: hidden;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+/* Accessibility Modes (תקן נגישות ישראלי ת"י 5568) */
+.acc-grayscale {
+  filter: grayscale(100%) !important;
+}
+
+.acc-high-contrast {
+  filter: contrast(150%) !important;
+}
+
+.acc-invert {
+  filter: invert(100%) hue-rotate(180deg) !important;
+}
+
+.acc-readable-font * {
+  font-family: Arial, 'Segoe UI', Tahoma, sans-serif !important;
+  letter-spacing: 0.03em !important;
+}
+
+.acc-highlight-links a,
+.acc-highlight-links button {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  outline: 2px solid #0284c7 !important;
+  outline-offset: 2px !important;
+}
+
+.acc-highlight-headers h1,
+.acc-highlight-headers h2,
+.acc-highlight-headers h3,
+.acc-highlight-headers h4 {
+  background-color: rgba(254, 240, 138, 0.45) !important;
+  color: #000 !important;
+  border-right: 4px solid #ca8a04 !important;
+  padding-right: 8px !important;
+}
+
+.dark .acc-highlight-headers h1,
+.dark .acc-highlight-headers h2,
+.dark .acc-highlight-headers h3,
+.dark .acc-highlight-headers h4 {
+  background-color: rgba(202, 138, 4, 0.35) !important;
+  color: #fef08a !important;
+}
+
+.acc-stop-animations,
+.acc-stop-animations * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+.acc-big-cursor,
+.acc-big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='0,0 0,28 8,20 16,32 20,30 12,18 22,18' fill='%23000' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E"), auto !important;
+}
+
+/* Custom scrollbar for chat and tables */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
