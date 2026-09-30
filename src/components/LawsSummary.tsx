@@ -19,6 +19,27 @@ interface CoreLawItem {
 
 export const LawsSummary: React.FC = () => {
   const coreLaws: CoreLawItem[] = [
+    {
+      name: 'הסכם קיבוצי כללי בענף המלונאות (2023-2026)',
+      hebrewYear: 'מס\' 20230232 מיום 05.06.2023',
+      main: 'הסכם ענפי מחייב: 8.33% פיצויי פיטורים מלאים, 6.5% תגמולי מעסיק, 7.5% קרן השתלמות ענפית, פיצול משמרות (7=8 שעות), וקיצור משרה ל-176 שעות חודשיות.',
+      lawUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות'
+    },
+    {
+      name: 'נספח אילת להסכם הקיבוצי בענף המלונאות',
+      hebrewYear: 'עדכון אוגוסט 2025 / 2026',
+      main: 'תוספת אילת (383.09 ₪ לחודש), ביטול תנאי תעודת זהות בפסיקה (דב"ע נד/3-111), מענקי התמדה ועונתיות, ומגורי עובדים.',
+      lawUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות'
+    },
+    {
+      name: 'סעיף 11 לפקודת מס הכנסה (הטבת מס אילת)',
+      hebrewYear: 'חוק אזור סחר חופשי באילת, התשמ"ה-1985',
+      main: 'זיכוי של 10% ממס הכנסה על יגיעה אישית לתושבי אילת מעל 12 חודשים, תקרה עד כ-268,200 ₪ הכנסה (עד 2,235 ₪ לחודש).',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/2660.htm',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זיכוי_ממס_הכנסה_לתושבי_אילת'
+    },
     { 
       name: 'חוק חופשה שנתית', 
       hebrewYear: 'תשי"א-1951', 

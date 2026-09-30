@@ -13,7 +13,7 @@ import {
   Search
 } from 'lucide-react';
 import { answerLaborQuestion, AnswerResponse } from '../data/qaEngine';
-import { FREQUENT_SCENARIOS } from '../data/laborRightsData';
+import { FREQUENT_SCENARIOS, UserZone } from '../data/laborRightsData';
 
 interface Message {
   id: string;
@@ -23,12 +23,18 @@ interface Message {
   timestamp: string;
 }
 
-export const InteractiveChat: React.FC = () => {
+interface InteractiveChatProps {
+  zone?: UserZone;
+}
+
+export const InteractiveChat: React.FC<InteractiveChatProps> = ({ zone = 'employee' }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
       sender: 'bot',
-      text: 'שלום! אני העוזר המשפטי לדיני עבודה בישראל. שאל אותי שאלה על זכויותיך או תאר תרחיש (לדוגמה: "פוטרתי אחרי 10 חודשים", "איך מחשבים פיצויים עם סעיף 14?", "פיטרו אותי בלי שימוע", "כמה ימי מחלה מגיעים לילד?"). אענה לך אך ורק על פי הדין הישראלי המאומת וכללי העזר המוגדרים.',
+      text: zone === 'employee'
+        ? 'שלום! אני יועץ הזכויות לעובדי המלונאות ואילת. שאל אותי כל שאלה בשפה פשוטה (לדוגמה: "כמה זה תוספת אילת?", "איך מחשבים פיצול משמרות במלון?", "כמה מותר להוריד לי על חדר?", "איך משלמים על שעות נוספות בשבת?"). אשמח לעזור לך להבין מה מגיע לך!'
+        : 'שלום! מערכת ייעוץ משפטי וחשבותי לענף המלונאות, נספח אילת ודיני עבודה. הזן שאילתה משפטית, סעיף חוק או תרחיש שכר (למשל: "הוראות סעיף 20 ופיצול משמרות בענף המלונאות", "פעימות שכר ותוספת אילת 2025-2026", "תקרות ניכוי דיור וסעיף 25 לחוק הגנת השכר", "שעות נוספות בשבת - הלכת כהן"). המערכת תספק ניתוח מדויק עם אסמכתאות.',
       timestamp: 'עכשיו'
     }
   ]);
@@ -60,7 +66,7 @@ export const InteractiveChat: React.FC = () => {
     setIsProcessing(true);
 
     setTimeout(() => {
-      const responseData = answerLaborQuestion(query.trim());
+      const responseData = answerLaborQuestion(query.trim(), zone);
       const botMsg: Message = {
         id: `bot-${Date.now()}`,
         sender: 'bot',
@@ -78,7 +84,7 @@ export const InteractiveChat: React.FC = () => {
       {
         id: 'welcome',
         sender: 'bot',
-        text: 'השיחה אופסה. שאל אותי כל שאלה לגבי זכויות עובדים או לחץ על אחד מהתרחישים המוכנים מראש.',
+        text: 'השיחה אופסה. שאל אותי כל שאלה לגבי זכויות עובדי המלונאות או לחץ על אחד מהתרחישים המוכנים מראש.',
         timestamp: 'עכשיו'
       }
     ]);

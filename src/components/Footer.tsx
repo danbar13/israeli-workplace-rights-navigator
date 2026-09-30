@@ -15,11 +15,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDisclaimer }) => {
           {/* Col 1: About */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-white font-bold text-base">
-              <Scale className="w-5 h-5 text-brand-400" />
-              <span>זכויות העובד בישראל (Workplace Rights Navigator)</span>
+              <Scale className="w-5 h-5 text-amber-400" />
+              <span>פורטל זכויות עובדי המלונאות — מהדורת אילת</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              מערכת אינטראקטיבית וחינמית להנגשת דיני העבודה, חישובי שכר וסיום העסקה בישראל. מבוסס על חוקי המגן, פסיקות בתי הדין לעבודה וצווי ההרחבה העדכניים ל-2026.
+              פורטל ייעודי ואינטראקטיבי להנגשת דיני העבודה, ההסכם הקיבוצי בענף המלונאות, נספח אילת וחישובי שכר וסוציאליות. מבוסס על הסכם המלונאות 2023-2026, פסיקות בתי הדין לעבודה וצווי ההרחבה העדכניים ל-2026.
             </p>
             <div className="pt-2 flex items-center gap-3">
               <button
