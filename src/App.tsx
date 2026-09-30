@@ -99,6 +99,10 @@ export function App() {
     setIsDark(prev => !prev);
   };
 
+  const [hasAcknowledgedDisclaimer, setHasAcknowledgedDisclaimer] = useState<boolean>(() => {
+    return localStorage.getItem('labor_rights_disclaimer_ack') === 'true';
+  });
+
   useEffect(() => {
     const hasAcknowledged = localStorage.getItem('labor_rights_disclaimer_ack');
     if (!hasAcknowledged) {
@@ -108,7 +112,13 @@ export function App() {
 
   const handleAcknowledgeDisclaimer = () => {
     localStorage.setItem('labor_rights_disclaimer_ack', 'true');
+    setHasAcknowledgedDisclaimer(true);
     setIsDisclaimerOpen(false);
+  };
+
+  const handleDismissBanner = () => {
+    localStorage.setItem('labor_rights_disclaimer_ack', 'true');
+    setHasAcknowledgedDisclaimer(true);
   };
 
   return (
@@ -122,8 +132,13 @@ export function App() {
         דלג לתוכן המרכזי
       </a>
 
-      {/* Persistent Legal Disclaimer Banner */}
-      <DisclaimerBanner onOpenModal={() => setIsDisclaimerOpen(true)} />
+      {/* Legal Disclaimer Banner - Only shown before initial acknowledgment; freed up afterwards */}
+      {!hasAcknowledgedDisclaimer && (
+        <DisclaimerBanner 
+          onOpenModal={() => setIsDisclaimerOpen(true)} 
+          onDismiss={handleDismissBanner}
+        />
+      )}
 
       {/* Main Header with Global UI Mode Toggle & Dark Mode Toggle */}
       <Header

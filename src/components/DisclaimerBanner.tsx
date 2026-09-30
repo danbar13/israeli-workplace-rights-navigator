@@ -1,11 +1,12 @@
 import React from 'react';
-import { AlertCircle, ChevronLeft } from 'lucide-react';
+import { AlertCircle, ChevronLeft, X } from 'lucide-react';
 
 interface DisclaimerBannerProps {
   onOpenModal: () => void;
+  onDismiss?: () => void;
 }
 
-export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenModal }) => {
+export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenModal, onDismiss }) => {
   return (
     <aside 
       aria-label="הבהרה משפטית"
@@ -19,13 +20,25 @@ export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenModal 
             <strong>הבהרה משפטית:</strong> כלי מידע חינמי המבוסס על דיני העבודה בישראל. הפלט והחישובים אינם מהווים ייעוץ משפטי מחייב.
           </span>
         </div>
-        <button
-          onClick={onOpenModal}
-          className="inline-flex items-center gap-1 font-bold text-amber-900 dark:text-amber-300 hover:text-amber-950 dark:hover:text-amber-100 underline underline-offset-2 hover:bg-amber-500/10 px-2 py-0.5 rounded-lg transition"
-        >
-          <span>תנאי שימוש והבהרה מלאה</span>
-          <ChevronLeft className="w-3.5 h-3.5" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onOpenModal}
+            className="inline-flex items-center gap-1 font-bold text-amber-900 dark:text-amber-300 hover:text-amber-950 dark:hover:text-amber-100 underline underline-offset-2 hover:bg-amber-500/10 px-2 py-0.5 rounded-lg transition cursor-pointer"
+          >
+            <span>תנאי שימוש והבהרה מלאה</span>
+            <ChevronLeft className="w-3.5 h-3.5" />
+          </button>
+          {onDismiss && (
+            <button
+              onClick={onDismiss}
+              className="p-1 text-amber-800 dark:text-amber-400 hover:text-amber-950 dark:hover:text-amber-100 hover:bg-amber-500/20 rounded-lg transition cursor-pointer"
+              title="סגור הודעה זו"
+              aria-label="סגור הודעה זו"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
       </div>
     </aside>
   );
