@@ -46,14 +46,21 @@ export const InteractiveChat: React.FC<InteractiveChatProps> = ({
   ]);
   const [inputText, setInputText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 1 || isProcessing) {
+      scrollToBottom();
+    }
   }, [messages, isProcessing]);
 
   const handleSendMessage = (textToSend?: string) => {
@@ -99,18 +106,20 @@ export const InteractiveChat: React.FC<InteractiveChatProps> = ({
   return (
     <div className="max-w-4xl mx-auto space-y-4" dir="rtl">
       {/* Header card */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4 transition-colors">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 transition-colors">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-brand-50 dark:bg-brand-950/60 rounded-2xl text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60">
-            <Bot className="w-7 h-7" />
+          <div className="p-2.5 sm:p-3 bg-brand-50 dark:bg-brand-950/60 rounded-2xl text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-900/60 shrink-0">
+            <Bot className="w-6 h-6 sm:w-7 sm:h-7" />
           </div>
           <div>
-            <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <span>יועץ תרחישים ושאלות בזכויות עבודה</span>
-              <span className="px-2.5 py-0.5 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-[11px] rounded-full font-bold border border-emerald-200 dark:border-emerald-800/40">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="text-base sm:text-xl font-black text-slate-900 dark:text-white">
+                יועץ תרחישים ושאלות בזכויות עבודה
+              </h2>
+              <span className="px-2.5 py-0.5 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-[10px] sm:text-[11px] rounded-full font-bold border border-emerald-200 dark:border-emerald-800/40 whitespace-nowrap">
                 מענה ישיר ומלא
               </span>
-            </h2>
+            </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               יועץ מומחה לזכויות עבודה והסכמים קיבוציים במלונאות ואילת. כל התשובות ניתנות ישירות מתוך מאגר הנתונים והחוקים של הפורטל.
             </p>
@@ -144,7 +153,10 @@ export const InteractiveChat: React.FC<InteractiveChatProps> = ({
       </div>
 
       {/* Chat messages viewport */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm p-4 sm:p-6 min-h-[420px] max-h-[650px] overflow-y-auto space-y-4 transition-colors">
+      <div 
+        ref={chatContainerRef}
+        className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm p-4 sm:p-6 min-h-[420px] max-h-[650px] overflow-y-auto space-y-4 transition-colors"
+      >
         {messages.map((msg) => (
           <div 
             key={msg.id} 
@@ -304,8 +316,6 @@ export const InteractiveChat: React.FC<InteractiveChatProps> = ({
             </div>
           </div>
         )}
-
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input Form */}

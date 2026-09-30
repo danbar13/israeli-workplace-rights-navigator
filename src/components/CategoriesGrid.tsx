@@ -423,7 +423,7 @@ export const CategoriesGrid: React.FC<CategoriesGridProps> = ({ zone }) => {
               <div
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic)}
-                className={`rounded-3xl border p-6 shadow-xs hover:shadow-xl transition-all duration-200 cursor-pointer flex flex-col justify-between group ${
+                className={`rounded-2xl sm:rounded-3xl border p-4 sm:p-6 shadow-xs hover:shadow-xl transition-all duration-200 cursor-pointer flex flex-col justify-between group ${
                   topic.isEilatSpecial
                     ? 'bg-gradient-to-b from-amber-50/50 to-white dark:from-amber-950/20 dark:to-slate-900 border-amber-300 dark:border-amber-800/70 hover:border-amber-500'
                     : 'bg-white dark:bg-slate-900 border-slate-200/90 dark:border-slate-800 hover:border-brand-400 dark:hover:border-brand-500/50'

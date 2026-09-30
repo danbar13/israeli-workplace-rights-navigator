@@ -118,10 +118,10 @@ export const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({
   return (
     <>
       {/* Floating Accessibility Trigger Button (Sticky at screen edge) */}
-      <div className="fixed bottom-6 left-6 z-40">
+      <div className="fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40">
         <button
           onClick={() => setIsOpen(true)}
-          className={`flex items-center gap-2 p-3.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl transition-all duration-300 transform active:scale-95 group border ${
+          className={`flex items-center gap-2 p-2.5 sm:px-4 sm:py-3 rounded-full sm:rounded-2xl shadow-xl transition-all duration-300 transform active:scale-95 group border cursor-pointer ${
             hasActiveSettings 
               ? 'bg-amber-500 text-slate-950 border-amber-300 ring-4 ring-amber-400/30' 
               : 'bg-brand-600 hover:bg-brand-700 text-white border-brand-500 hover:shadow-brand-500/25'
@@ -129,12 +129,12 @@ export const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({
           aria-label="פתח תפריט נגישות (תקן ישראלי 5568 ברמה AA)"
           title="תפריט נגישות (תקן ת''י 5568)"
         >
-          <Accessibility className="w-6 h-6 transition-transform group-hover:rotate-12" />
+          <Accessibility className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:rotate-12" />
           <span className="hidden sm:inline-block font-bold text-xs">
             {hasActiveSettings ? 'נגישות פעילה' : 'התאמות נגישות'}
           </span>
           {hasActiveSettings && (
-            <span className="w-2.5 h-2.5 rounded-full bg-slate-900 animate-pulse" />
+            <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-slate-900 animate-pulse" />
           )}
         </button>
       </div>

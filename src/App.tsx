@@ -51,6 +51,12 @@ import { UserZone } from './data/laborRightsData';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'categories' | 'chat' | 'calculators' | 'search' | 'laws'>('categories');
+
+  const handleSetActiveTab = (tab: 'categories' | 'chat' | 'calculators' | 'search' | 'laws') => {
+    setActiveTab(tab);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   const [zone, setZone] = useState<UserZone>(() => {
     try {
       const savedZone = localStorage.getItem('labor_portal_zone');
@@ -143,7 +149,7 @@ export function App() {
       {/* Main Header with Global UI Mode Toggle & Dark Mode Toggle */}
       <Header
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleSetActiveTab}
         zone={zone}
         setZone={handleSetZone}
         onOpenDisclaimer={() => setIsDisclaimerOpen(true)}
@@ -152,30 +158,30 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10">
         
         {/* Modern Hospitality Hero Banner (visible on Overview / Categories tab) */}
         {activeTab === 'categories' && (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             
             {/* Dynamic Hero Banner by Active Zone */}
-            <div className={`relative overflow-hidden rounded-3xl p-6 sm:p-10 shadow-xl border text-white transition-colors duration-300 ${
+            <div className={`relative overflow-hidden rounded-2xl sm:rounded-3xl p-4 sm:p-10 shadow-xl border text-white transition-colors duration-300 ${
               zone === 'employee'
                 ? 'bg-gradient-to-l from-amber-700 via-amber-600 to-sky-700 border-amber-500/30 dark:border-amber-900/60'
                 : 'bg-gradient-to-l from-slate-950 via-brand-900 to-brand-800 border-brand-700/40 dark:border-slate-800'
             }`}>
-              <div className="relative z-10 max-w-3xl space-y-4">
+              <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
                 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-white">
-                  <Palmtree className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-                  <span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-white">
+                  <Palmtree className="w-3.5 h-3.5 text-amber-300 animate-pulse shrink-0" />
+                  <span className="leading-tight">
                     {zone === 'employee' 
                       ? 'פורטל זכויות עובדי המלונאות — מהדורת אילת 2026' 
                       : 'מערכת משאבי אנוש וחשבות שכר — הסכם קיבוצי ענפי ונספח אילת'}
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+                <h2 className="text-xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
                   {zone === 'employee' ? (
                     <>כל הזכויות של עובדי המלונות ואילת — פשוט, ישיר ובלי התחמקויות</>
                   ) : (
@@ -183,7 +189,7 @@ export function App() {
                   )}
                 </h2>
 
-                <p className="text-white/90 dark:text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-medium">
+                <p className="text-white/90 dark:text-slate-200 text-xs sm:text-base leading-relaxed max-w-2xl font-medium">
                   {zone === 'employee' ? (
                     <>
                       בדיקה קלה ומהירה: תוספת אילת (383.09 ₪ לחודש ללא תלות בתעודת זהות!), זיכוי מס 10% לתושבי העיר, 8 שעות שכר על 7 שעות בפיצול משמרות, שבתות וחגים (עד 200%), ותקרות ניכוי חוקיות על דיור ואוכל.
@@ -195,33 +201,33 @@ export function App() {
                   )}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-3 pt-2">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
                   <button
-                    onClick={() => setActiveTab('chat')}
-                    className="px-5 py-3 bg-white text-slate-900 hover:bg-slate-100 rounded-2xl font-black text-sm shadow-md transition-all flex items-center gap-2 transform active:scale-95 cursor-pointer"
+                    onClick={() => handleSetActiveTab('chat')}
+                    className="w-full sm:w-auto justify-center px-4 sm:px-5 py-2.5 sm:py-3 bg-white text-slate-900 hover:bg-slate-100 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 transform active:scale-95 cursor-pointer"
                   >
-                    <HelpCircle className="w-4 h-4 text-brand-600" />
+                    <HelpCircle className="w-4 h-4 text-brand-600 shrink-0" />
                     <span>שאל את יועץ התרחישים</span>
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-4 h-4 shrink-0" />
                   </button>
 
                   <button
-                    onClick={() => setActiveTab('calculators')}
-                    className={`px-5 py-3 text-white border rounded-2xl font-bold text-sm transition flex items-center gap-2 shadow-xs cursor-pointer ${
+                    onClick={() => handleSetActiveTab('calculators')}
+                    className={`w-full sm:w-auto justify-center px-4 sm:px-5 py-2.5 sm:py-3 text-white border rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-xs cursor-pointer ${
                       zone === 'employee'
                         ? 'bg-amber-800/80 hover:bg-amber-800 border-amber-300/40'
                         : 'bg-brand-600/80 hover:bg-brand-600 border-brand-400/50'
                     }`}
                   >
-                    <Calculator className="w-4 h-4" />
+                    <Calculator className="w-4 h-4 shrink-0" />
                     <span>מחשבוני פיצול משמרות ושכר</span>
                   </button>
 
                   <button
-                    onClick={() => setActiveTab('search')}
-                    className="px-4 py-3 bg-white/15 hover:bg-white/25 text-white rounded-2xl font-semibold text-sm transition flex items-center gap-2 border border-white/20 cursor-pointer"
+                    onClick={() => handleSetActiveTab('search')}
+                    className="w-full sm:w-auto justify-center px-3.5 sm:px-4 py-2.5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-xl sm:rounded-2xl font-semibold text-xs sm:text-sm transition flex items-center gap-2 border border-white/20 cursor-pointer"
                   >
-                    <Search className="w-4 h-4" />
+                    <Search className="w-4 h-4 shrink-0" />
                     <span>חיפוש מהיר</span>
                   </button>
                 </div>
@@ -234,86 +240,86 @@ export function App() {
 
             {/* Quick Stats Badges Bar - Zone Aware */}
             {zone === 'employee' ? (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-amber-200/80 dark:border-amber-900/60 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-amber-50 dark:bg-amber-950/60 rounded-xl text-amber-600 dark:text-amber-400 flex-shrink-0">
-                    <Palmtree className="w-5 h-5" />
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-amber-200/80 dark:border-amber-900/60 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-amber-50 dark:bg-amber-950/60 rounded-xl text-amber-600 dark:text-amber-400 shrink-0">
+                    <Palmtree className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">תוספת אילת (ענפי)</span>
-                    <span className="text-base font-black text-amber-950 dark:text-amber-300 font-mono">₪383.09 לחודש</span>
-                  </div>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-sky-50 dark:bg-sky-950/60 rounded-xl text-sky-600 dark:text-sky-400 flex-shrink-0">
-                    <Coins className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">זיכוי מס אילת (סעיף 11)</span>
-                    <span className="text-base font-black text-slate-900 dark:text-white font-mono">עד 10% (₪2,235/חודש)</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">תוספת אילת (ענפי)</span>
+                    <span className="text-xs sm:text-base font-black text-amber-950 dark:text-amber-300 font-mono block whitespace-nowrap">₪383.09 לחודש</span>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-indigo-50 dark:bg-indigo-950/60 rounded-xl text-indigo-600 dark:text-indigo-400 flex-shrink-0">
-                    <Split className="w-5 h-5" />
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-sky-50 dark:bg-sky-950/60 rounded-xl text-sky-600 dark:text-sky-400 shrink-0">
+                    <Coins className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">פיצול משמרת במלון</span>
-                    <span className="text-base font-black text-indigo-950 dark:text-indigo-300 font-mono">7 שעות = 8 שכר</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">זיכוי מס אילת</span>
+                    <span className="text-xs sm:text-base font-black text-slate-900 dark:text-white font-mono block whitespace-nowrap">עד 10% (₪2,235)</span>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-purple-50 dark:bg-purple-950/60 rounded-xl text-purple-600 dark:text-purple-400 flex-shrink-0">
-                    <Moon className="w-5 h-5" />
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-indigo-50 dark:bg-indigo-950/60 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0">
+                    <Split className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">שבת וחג במלונאות</span>
-                    <span className="text-base font-black text-purple-950 dark:text-purple-300 font-mono">150% עד 200%</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">פיצול משמרת במלון</span>
+                    <span className="text-xs sm:text-base font-black text-indigo-950 dark:text-indigo-300 font-mono block whitespace-nowrap">7 שעות = 8 שכר</span>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-purple-50 dark:bg-purple-950/60 rounded-xl text-purple-600 dark:text-purple-400 shrink-0">
+                    <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">שבת וחג במלונאות</span>
+                    <span className="text-xs sm:text-base font-black text-purple-950 dark:text-purple-300 font-mono block whitespace-nowrap">150% עד 200%</span>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/60 rounded-xl text-emerald-600 dark:text-emerald-400 flex-shrink-0">
-                    <Coins className="w-5 h-5" />
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-emerald-50 dark:bg-emerald-950/60 rounded-xl text-emerald-600 dark:text-emerald-400 shrink-0">
+                    <Coins className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">שכר מינימום מבוגר (2026)</span>
-                    <span className="text-base font-black text-slate-900 dark:text-white font-mono">₪6,443.85 (₪35.40/שעה)</span>
-                  </div>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-brand-50 dark:bg-brand-950/60 rounded-xl text-brand-600 dark:text-brand-400 flex-shrink-0">
-                    <Palmtree className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">תוספת אילת (פעימת 08/25)</span>
-                    <span className="text-base font-black text-brand-950 dark:text-brand-300 font-mono">₪383.09 (36 חודשי ותק)</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">שכר מינימום מבוגר</span>
+                    <span className="text-xs sm:text-base font-black text-slate-900 dark:text-white font-mono block whitespace-nowrap">₪6,443.85 (35.40/שעה)</span>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-indigo-50 dark:bg-indigo-950/60 rounded-xl text-indigo-600 dark:text-indigo-400 flex-shrink-0">
-                    <Clock className="w-5 h-5" />
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-brand-50 dark:bg-brand-950/60 rounded-xl text-brand-600 dark:text-brand-400 shrink-0">
+                    <Palmtree className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">בסיס משרה ענפי מקוצר</span>
-                    <span className="text-base font-black text-indigo-950 dark:text-indigo-300 font-mono">176 שעות חודשיות</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">תוספת אילת (08/25)</span>
+                    <span className="text-xs sm:text-base font-black text-brand-950 dark:text-brand-300 font-mono block whitespace-nowrap">₪383.09 (36 חודש)</span>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-3">
-                  <div className="p-2.5 bg-amber-50 dark:bg-amber-950/60 rounded-xl text-amber-600 dark:text-amber-400 flex-shrink-0">
-                    <PiggyBank className="w-5 h-5" />
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-indigo-50 dark:bg-indigo-950/60 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-bold block">הפרשות סוציאליות מלונות</span>
-                    <span className="text-base font-black text-amber-950 dark:text-amber-300 font-mono">6.5% + 8.33% + 7.5%</span>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">בסיס משרה ענפי</span>
+                    <span className="text-xs sm:text-base font-black text-indigo-950 dark:text-indigo-300 font-mono block whitespace-nowrap">176 שעות חודש</span>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center gap-2 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 bg-amber-50 dark:bg-amber-950/60 rounded-xl text-amber-600 dark:text-amber-400 shrink-0">
+                    <PiggyBank className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-bold block truncate">הפרשות סוציאליות</span>
+                    <span className="text-xs sm:text-base font-black text-amber-950 dark:text-amber-300 font-mono block whitespace-nowrap">6.5% + 8.33% + 7.5%</span>
                   </div>
                 </div>
               </div>

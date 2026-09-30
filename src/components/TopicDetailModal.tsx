@@ -27,20 +27,20 @@ export const TopicDetailModal: React.FC<TopicDetailModalProps> = ({ topic, onClo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-xs animate-fadeIn" dir="rtl">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-3xl w-full border border-slate-200 dark:border-slate-800 overflow-hidden text-right flex flex-col max-h-[92vh] transition-colors">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl max-w-3xl w-full border border-slate-200 dark:border-slate-800 overflow-hidden text-right flex flex-col max-h-[92vh] transition-colors">
         
         {/* Header */}
-        <div className={`p-6 relative text-white transition-colors duration-300 ${
+        <div className={`p-4 sm:p-6 relative text-white transition-colors duration-300 ${
           modalZone === 'employee'
             ? 'bg-gradient-to-l from-amber-700 via-amber-800 to-slate-900'
             : 'bg-gradient-to-l from-brand-800 via-slate-900 to-brand-950'
         }`}>
           <button
             onClick={onClose}
-            className="absolute left-5 top-5 p-2 text-white/80 hover:text-white rounded-xl hover:bg-white/10 transition cursor-pointer"
+            className="absolute left-3.5 top-3.5 sm:left-5 sm:top-5 p-2 text-white/80 hover:text-white rounded-xl hover:bg-white/10 transition cursor-pointer"
             aria-label="סגור"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <div className="flex items-center gap-2 mb-2.5 flex-wrap">
@@ -108,7 +108,7 @@ export const TopicDetailModal: React.FC<TopicDetailModalProps> = ({ topic, onClo
         </div>
 
         {/* Content Body */}
-        <div className="p-6 overflow-y-auto space-y-6 text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 sm:space-y-6 text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
           
           {/* View 1: Employee Zone Content */}
           {modalZone === 'employee' ? (

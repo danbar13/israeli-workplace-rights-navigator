@@ -39,25 +39,25 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 sticky top-0 z-30 transition-colors duration-200 shadow-xs" dir="rtl">
       
       {/* Top Bar: Global UI Toggle for Employee vs HR & Payroll Zone */}
-      <div className="bg-slate-100/90 dark:bg-slate-950/80 border-b border-slate-200/60 dark:border-slate-800 py-1.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      <div className="bg-slate-100/90 dark:bg-slate-950/80 border-b border-slate-200/60 dark:border-slate-800 py-1.5 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
             <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 hidden sm:inline">
               מצב משתמש:
             </span>
-            <div className="inline-flex items-center bg-slate-200/80 dark:bg-slate-800 p-1 rounded-xl border border-slate-300/70 dark:border-slate-700 shadow-2xs">
+            <div className="inline-flex items-center bg-slate-200/80 dark:bg-slate-800 p-0.5 sm:p-1 rounded-xl border border-slate-300/70 dark:border-slate-700 shadow-2xs w-full sm:w-auto justify-center">
               <button
                 type="button"
                 onClick={() => setZone('employee')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer ${
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer ${
                   zone === 'employee'
                     ? 'bg-amber-500 text-slate-950 shadow-xs'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                 }`}
                 title="מעבר לאזור עובדים: הסברים פשוטים, זכויות יומיומיות, ומיקוד באילת"
               >
-                <Palmtree className="w-3.5 h-3.5" />
+                <Palmtree className="w-3.5 h-3.5 flex-shrink-0" />
                 <span>אזור עובדים</span>
                 <span className="text-[9px] px-1 py-0.2 rounded-full bg-slate-900/10 dark:bg-slate-900/30 font-bold hidden md:inline">
                   פשוט ונגיש
@@ -67,15 +67,16 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setZone('hr')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer ${
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer ${
                   zone === 'hr'
                     ? 'bg-brand-600 text-white shadow-xs'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                 }`}
                 title="מעבר לאזור משאבי אנוש וחשבות שכר: עומק משפטי, סעיפי הסכם קיבוצי, וחישובי שכר"
               >
-                <Briefcase className="w-3.5 h-3.5" />
-                <span>אזור משאבי אנוש וחשבות שכר</span>
+                <Briefcase className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="sm:hidden">HR ושכר</span>
+                <span className="hidden sm:inline">אזור משאבי אנוש וחשבות שכר</span>
                 <span className="text-[9px] px-1 py-0.2 rounded-full bg-white/20 font-bold hidden md:inline">
                   מאגר מלא ומעמיק
                 </span>
@@ -83,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
+          <div className="hidden sm:flex items-center gap-2 text-xs flex-shrink-0">
             <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${
               zone === 'employee'
                 ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700/60'
@@ -98,28 +99,28 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Nav Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-20">
           
           {/* Logo & Brand */}
-          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setActiveTab('categories')}>
-            <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white shadow-md transition-transform duration-200 group-hover:scale-105 ${
+          <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group" onClick={() => setActiveTab('categories')}>
+            <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white shadow-md transition-transform duration-200 group-hover:scale-105 flex-shrink-0 ${
               zone === 'employee' 
                 ? 'bg-gradient-to-tr from-amber-600 via-amber-500 to-sky-500 shadow-amber-500/20' 
                 : 'bg-gradient-to-tr from-brand-700 via-brand-600 to-sky-500 shadow-brand-500/20'
             }`}>
-              {zone === 'employee' ? <Palmtree className="w-6 h-6" /> : <Scale className="w-6 h-6" />}
+              {zone === 'employee' ? <Palmtree className="w-5 h-5 sm:w-6 sm:h-6" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6" />}
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-lg lg:text-xl font-black text-slate-900 dark:text-white leading-tight">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <h1 className="text-sm sm:text-lg lg:text-xl font-black text-slate-900 dark:text-white leading-tight">
                   פורטל זכויות עובדי המלונאות
                 </h1>
-                <span className="px-2 py-0.5 bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-300 text-[10px] font-black rounded-full border border-amber-300 dark:border-amber-700/60 whitespace-nowrap">
+                <span className="px-1.5 sm:px-2 py-0.2 sm:py-0.5 bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-300 text-[9px] sm:text-[10px] font-black rounded-full border border-amber-300 dark:border-amber-700/60 whitespace-nowrap">
                   מהדורת אילת
                 </span>
               </div>
-              <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 block font-medium">
+              <span className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
                 Eilat & Israel Hospitality Labor Rights Portal
               </span>
             </div>
