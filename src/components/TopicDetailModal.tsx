@@ -273,10 +273,12 @@ export const TopicDetailModal: React.FC<TopicDetailModalProps> = ({ topic, onClo
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>
-                  {topic.lawRefUrl.includes('workagreements')
-                    ? 'מאגר הסכמים (משרד העבודה)'
+                  {topic.lawRefUrl.endsWith('.pdf') || topic.lawRefUrl.includes('heskem')
+                    ? 'נוסח ההסכם המלא (PDF)'
                     : topic.lawRefUrl.includes('nevo.co.il')
                     ? 'נוסח החוק (נבו)'
+                    : topic.lawRefUrl.includes('workagreements')
+                    ? 'מאגר הסכמים (משרד העבודה)'
                     : 'מקור חוקי'}
                 </span>
                 <ExternalLink className="w-3 h-3 text-slate-400" />

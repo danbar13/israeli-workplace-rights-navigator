@@ -24,16 +24,16 @@ export const LawsSummary: React.FC = () => {
       name: 'הסכם קיבוצי כללי בענף המלונאות (2023-2026)',
       hebrewYear: 'מס\' 20230232 מיום 05.06.2023',
       main: 'הסכם ענפי מחייב: 8.33% פיצויי פיטורים מלאים, 6.5% תגמולי מעסיק, 7.5% קרן השתלמות ענפית, פיצול משמרות (7=8 שעות), וקיצור משרה ל-176 שעות חודשיות.',
-      lawUrl: 'https://workagreements.labor.gov.il/',
-      lawUrlLabel: 'מאגר הסכמים (משרד העבודה)',
+      lawUrl: 'https://malam-payroll.com/wp-content/uploads/2025/07/heskemmelonaut050623.pdf',
+      lawUrlLabel: 'נוסח ההסכם המלא (PDF)',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/זכותון_עובדים_בענף_המלונאות'
     },
     {
       name: 'נספח אילת להסכם הקיבוצי בענף המלונאות',
       hebrewYear: 'עדכון אוגוסט 2025 / 2026',
       main: 'תוספת אילת (383.09 ₪ לחודש), ביטול תנאי תעודת זהות בפסיקה (דב"ע נד/3-111), מענקי התמדה ועונתיות, ומגורי עובדים.',
-      lawUrl: 'https://workagreements.labor.gov.il/',
-      lawUrlLabel: 'נספח אילת (משרד העבודה)',
+      lawUrl: 'https://malam-payroll.com/wp-content/uploads/2025/09/heskem050623.pdf',
+      lawUrlLabel: 'נוסח עדכון אילת (PDF)',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/זכותון_עובדים_בענף_המלונאות'
     },
     {
