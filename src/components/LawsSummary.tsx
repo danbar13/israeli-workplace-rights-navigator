@@ -13,7 +13,8 @@ interface CoreLawItem {
   name: string;
   hebrewYear: string;
   main: string;
-  lawUrl: string; // Link to authoritative consolidated statute (Nevo)
+  lawUrl: string; // Link to authoritative consolidated statute (Nevo) or official government agreements database
+  lawUrlLabel?: string; // Optional custom label, defaults to "נוסח מלא (נבו)"
   kolZchutUrl: string; // Link to Kol Zchut portal
 }
 
@@ -23,22 +24,25 @@ export const LawsSummary: React.FC = () => {
       name: 'הסכם קיבוצי כללי בענף המלונאות (2023-2026)',
       hebrewYear: 'מס\' 20230232 מיום 05.06.2023',
       main: 'הסכם ענפי מחייב: 8.33% פיצויי פיטורים מלאים, 6.5% תגמולי מעסיק, 7.5% קרן השתלמות ענפית, פיצול משמרות (7=8 שעות), וקיצור משרה ל-176 שעות חודשיות.',
-      lawUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות'
+      lawUrl: 'https://workagreements.labor.gov.il/',
+      lawUrlLabel: 'מאגר הסכמים (משרד העבודה)',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זכותון_עובדים_בענף_המלונאות'
     },
     {
       name: 'נספח אילת להסכם הקיבוצי בענף המלונאות',
       hebrewYear: 'עדכון אוגוסט 2025 / 2026',
       main: 'תוספת אילת (383.09 ₪ לחודש), ביטול תנאי תעודת זהות בפסיקה (דב"ע נד/3-111), מענקי התמדה ועונתיות, ומגורי עובדים.',
-      lawUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/עובדי_מלונאות'
+      lawUrl: 'https://workagreements.labor.gov.il/',
+      lawUrlLabel: 'נספח אילת (משרד העבודה)',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זכותון_עובדים_בענף_המלונאות'
     },
     {
       name: 'סעיף 11 לפקודת מס הכנסה (הטבת מס אילת)',
       hebrewYear: 'חוק אזור סחר חופשי באילת, התשמ"ה-1985',
       main: 'זיכוי של 10% ממס הכנסה על יגיעה אישית לתושבי אילת מעל 12 חודשים, תקרה עד כ-268,200 ₪ הכנסה (עד 2,235 ₪ לחודש).',
-      lawUrl: 'https://www.nevo.co.il/law_html/law00/2660.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/זיכוי_ממס_הכנסה_לתושבי_אילת'
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/009_001.htm',
+      lawUrlLabel: 'חוק אזור סחר חופשי (נבו)',
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זיכוי_ממס_הכנסה_לתושבים_בפריפריה'
     },
     { 
       name: 'חוק חופשה שנתית', 
@@ -73,14 +77,14 @@ export const LawsSummary: React.FC = () => {
       hebrewYear: 'תשי"ד-1954', 
       main: '26 שבועות לידה והורות (15 בתשלום), איסור פיטורים בהריון מוותק 6 חודשים, הגנה לאחר לידה והפלה.',
       lawUrl: 'https://www.nevo.co.il/law_html/law00/74249.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/נשים_בהריון_ולאחר_לידה'
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/איסור_פיטורי_עובדת_בהיריון'
     },
     { 
       name: 'חוק עבודת הנוער', 
       hebrewYear: 'תשי"ג-1953', 
       main: 'שבוע 40 שעות, איסור מוחלט על שעות נוספות ושבת, איסור עבודת לילה, שכר לפי גיל (מחלק 173), והתלמדות בתשלום מלא.',
       lawUrl: 'https://www.nevo.co.il/law_html/law00/4273.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/זכויות_בני_נוער_עובדים'
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/זכותון_נוער_עובד'
     },
     { 
       name: 'חוק שכר מינימום', 
@@ -101,21 +105,21 @@ export const LawsSummary: React.FC = () => {
       hebrewYear: 'תשי"ח-1958', 
       main: 'חובת מסירת תלוש שכר מפורט עד היום ה-9 (סעיף 24), איסור ניכויים שלא כדין, ופיצויי הלנת שכר.',
       lawUrl: 'https://www.nevo.co.il/law_html/law00/71689.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/מועד_תשלום_שכר_עבודה'
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/מועד_תשלום_השכר'
     },
     { 
       name: 'חוק למניעת הטרדה מינית', 
       hebrewYear: 'תשנ"ח-1998', 
       main: 'חובות מעסיק, מינוי ממונה, איסור התנכלות, ואחריות מזמיני שירות כלפי עובדי קבלן.',
       lawUrl: 'https://www.nevo.co.il/law_html/law00/72507.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/מניעת_הטרדה_מינית_בעבודה'
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/הטרדה_מינית'
     },
     { 
       name: 'חוק שוויון זכויות לאנשים עם מוגבלות', 
       hebrewYear: 'תשנ"ח-1998', 
       main: 'חובת ביצוע התאמות סבירות, איסור הפליה ונגישות מקום העבודה.',
       lawUrl: 'https://www.nevo.co.il/law_html/law01/p214m2_001.htm',
-      kolZchutUrl: 'https://www.kolzchut.org.il/he/איסור_אפליה_של_אדם_עם_מוגבלות_בעבודה'
+      kolZchutUrl: 'https://www.kolzchut.org.il/he/תעסוקת_אנשים_עם_מוגבלויות'
     },
     { 
       name: 'חוק בית הדין לעבודה', 
@@ -128,14 +132,16 @@ export const LawsSummary: React.FC = () => {
       name: 'צו הרחבה לפנסיה חובה', 
       hebrewYear: 'תשס"ח-2008', 
       main: 'הפרשות חובה: 6% עובד, 6.5% מעסיק תגמולים, 6% פיצויים מינימום, וזיכוי מס 35% בסעיף 45א.',
-      lawUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_לביטוח_פנסיוני_מקיף_במשק',
+      lawUrl: 'https://www.nevo.co.il/law_html/law01/p214_001.htm',
+      lawUrlLabel: 'נוסח הצו (נבו)',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_לביטוח_פנסיוני_מקיף_במשק'
     },
     { 
       name: 'צו הרחבה דמי הבראה', 
       hebrewYear: 'מעודכן 2026', 
       main: '5-10 ימים לפי ותק; תעריף מעודכן 451.50 ₪ בפרטי (השלמת 33.50 ₪ לשנה זו) ו-511.60 ₪ בציבורי.',
-      lawUrl: 'https://www.kolzchut.org.il/he/צו_הרחבה_בדבר_השתתפות_המעסיק_בהוצאות_הבראה_ונופש',
+      lawUrl: 'https://www.nevo.co.il/law_html/law00/71871.htm',
+      lawUrlLabel: 'נוסח הצו (נבו)',
       kolZchutUrl: 'https://www.kolzchut.org.il/he/דמי_הבראה'
     }
   ];
@@ -257,11 +263,11 @@ export const LawsSummary: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 py-2 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-2xs group/btn cursor-pointer"
-                  title={`פתח את נוסח החוק המלא של ${law.name} באתר נבו`}
-                  aria-label={`נוסח החוק המלא של ${law.name} באתר נבו`}
+                  title={`פתח ${law.lawUrlLabel || 'נוסח חוק מלא (נבו)'} עבור ${law.name}`}
+                  aria-label={`${law.lawUrlLabel || 'נוסח מלא'} של ${law.name}`}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
-                  <span>נוסח מלא (נבו)</span>
+                  <span>{law.lawUrlLabel || 'נוסח מלא (נבו)'}</span>
                   <ExternalLink className="w-3 h-3 opacity-80 group-hover/btn:translate-x-[-2px] transition-transform" />
                 </a>
 
