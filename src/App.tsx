@@ -310,7 +310,7 @@ export function App() {
         {activeTab === 'categories' && <CategoriesGrid zone={zone} />}
 
         {/* Tab View 2: Interactive Scenario Chat / Q&A */}
-        {activeTab === 'chat' && <InteractiveChat zone={zone} />}
+        {activeTab === 'chat' && <InteractiveChat zone={zone} onNavigateTab={(tab) => setActiveTab(tab)} />}
 
         {/* Tab View 3: Calculators */}
         {activeTab === 'calculators' && <Calculators zone={zone} />}
